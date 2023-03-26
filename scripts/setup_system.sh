@@ -78,4 +78,7 @@ sudo nft "add chain ip filter FORWARD { type filter hook forward priority 0; pol
 sudo nft "add rule ip filter FORWARD ct state related,established counter accept"
 sudo nft "add table ip nat"
 sudo nft "add chain ip nat POSTROUTING { type nat hook postrouting priority 0; policy accept; }"
-sudo nft "add rule ip nat POSTROUTING oifname ${hostiface} counter masquerade"
+for eth in ${hostiface}
+do
+sudo nft "add rule ip nat POSTROUTING oifname ${eth} counter masquerade"
+done
