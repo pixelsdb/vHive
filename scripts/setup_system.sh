@@ -69,6 +69,7 @@ sudo sysctl --quiet -w kernel.pid_max=4194303
 sudo sysctl --quiet -w kernel.threads-max=999999999
 sudo swapoff -a >> /dev/null
 sudo sysctl --quiet net.ipv4.ip_forward=1
+sudo sysctl --quiet -w net.ipv4.conf.all.promote_secondaries=1
 sudo sysctl --quiet --system
 
 # NAT setup
