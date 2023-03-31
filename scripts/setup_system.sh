@@ -23,10 +23,7 @@
 # SOFTWARE.
 
  . /etc/os-release
-sudo apt-get -y install curl ca-certificates >> /dev/null
-sudo add-apt-repository -y universe >> /dev/null
 sudo apt-get update >> /dev/null
-
 sudo apt-get -y install \
     apt-transport-https \
     gcc \
@@ -44,6 +41,8 @@ sudo apt-get -y install \
     iproute2 \
     nftables \
     git-lfs >> /dev/null
+sudo apt-get -y install curl ca-certificates >> /dev/null
+sudo add-apt-repository -y universe >> /dev/null
 
 # stack size, # of open files, # of pids
 sudo sh -c "echo \"* soft nofile 1000000\" >> /etc/security/limits.conf"
