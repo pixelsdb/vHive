@@ -22,7 +22,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-set -e
+set -ex
+
+sudo apt update >> /dev/null
+sudo apt -y install wget >> /dev/null
 
 wget --continue --quiet https://golang.org/dl/go1.18.linux-amd64.tar.gz
 

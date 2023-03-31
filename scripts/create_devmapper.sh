@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -ex
+
 sudo mkdir -p /var/lib/firecracker-containerd/snapshotter/devmapper
 
 pushd /var/lib/firecracker-containerd/snapshotter/devmapper > /dev/null

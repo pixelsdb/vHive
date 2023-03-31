@@ -21,6 +21,7 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
+set -ex 
 
 sudo apt-get update >> /dev/null
 
@@ -57,17 +58,3 @@ git clone --quiet --depth=1 --branch=$KNATIVE_VERSION -c advice.detachedHead=fal
 cd $HOME/client
 hack/build.sh -f
 sudo mv kn /usr/local/bin
-
-
-# Necessary for containerd as container runtime but not docker
-sudo modprobe overlay
-sudo modprobe br_netfilter
-
-# Set up required sysctl params, these persist across reboots.
-sudo tee /etc/sysctl.d/99-kubernetes-cri.conf <<EOF
-net.bridge.bridge-nf-call-iptables  = 1
-net.ipv4.ip_forward                 = 1
-net.bridge.bridge-nf-call-ip6tables = 1
-EOF
-
-sudo sysctl --quiet --system
