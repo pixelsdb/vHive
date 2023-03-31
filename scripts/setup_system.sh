@@ -25,24 +25,24 @@ set -ex
 
  . /etc/os-release
 sudo apt-get update >> /dev/null
-sudo apt-get -y install \
-    apt-transport-https \
-    gcc \
-    g++ \
-    make \
-    acl \
-    net-tools \
-    git-lfs \
-    bc \
-    gettext-base \
-    jq \
-    dmsetup \
-    gnupg-agent \
-    software-properties-common \
-    iproute2 \
-    nftables \
-    git-lfs >> /dev/null
-sudo apt-get -y install curl ca-certificates >> /dev/null
+sudo apt-get -y install apt-transport-https >> /dev/null
+sudo apt-get -y install gcc >> /dev/null
+sudo apt-get -y install g++ >> /dev/null
+sudo apt-get -y install make >> /dev/null
+sudo apt-get -y install acl >> /dev/null
+sudo apt-get -y install net-tools >> /dev/null
+sudo apt-get -y install git-lfs >> /dev/null
+sudo apt-get -y install bc >> /dev/null
+sudo apt-get -y install gettext-base >> /dev/null
+sudo apt-get -y install jq >> /dev/null
+sudo apt-get -y install dmsetup >> /dev/null
+sudo apt-get -y install gnupg-agent >> /dev/null
+sudo apt-get -y install software-properties-common >> /dev/null
+sudo apt-get -y install iproute2 >> /dev/null
+sudo apt-get -y install nftables >> /dev/null
+sudo apt-get -y install curl >> /dev/null
+sudo apt-get -y install ca-certificates >> /dev/null
+
 sudo add-apt-repository -y universe >> /dev/null
 
 # stack size, # of open files, # of pids
