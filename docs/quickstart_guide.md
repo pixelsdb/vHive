@@ -109,7 +109,12 @@ SSD-equipped nodes are highly recommended. Full list of CloudLab nodes can be fo
     > **BEWARE:**
     >
     > This script can print `Command failed` when creating the devmapper at the end. This can be safely ignored.
-
+    
+    Then run the script to setup runtime:
+    
+    ```bash
+    ./scripts/setup_runtime.sh
+    ```
 
 ### 2. Setup Worker Nodes
 **On each worker node**, execute the following instructions below **as a non-root user with sudo rights** using **bash**:
@@ -172,6 +177,12 @@ SSD-equipped nodes are highly recommended. Full list of CloudLab nodes can be fo
     > By default, the microVMs are booted, `-snapshots` enables snapshots after the 2nd invocation of each function.
     >
     > If `-snapshots` and `-upf` are specified, the snapshots are accelerated with the Record-and-Prefetch (REAP) technique that we described in our ASPLOS'21 paper ([extended abstract][ext-abstract], [full paper](papers/REAP_ASPLOS21.pdf)).
+
+All the above setups are integrated into a single script file, you can execute it for convenience:
+
+```bash
+./scripts/setup_worker.sh
+```
 
 ### 3. Configure Master Node
 **On the master node**, execute the following instructions below **as a non-root user with sudo rights** using **bash**:
@@ -255,7 +266,15 @@ Execute the following below **as a non-root user with sudo rights** using **bash
     > Therefore, the following steps from this guide must **not** be executed:
     > * `1.3 - Start firecracker-containerd in a background terminal named firecracker`,
     > * `1.5 - Start vHive in a background terminal named vhive`.
-2. Start `containerd` in a background terminal named `containerd`:
+
+2. Run the runtime settings script(every time when you reboot the machine):
+
+    ```bash
+    ./scripts/setup_runtime.sh;
+    ```
+
+3. Start `containerd` in a background terminal named `containerd`:
+
     ```bash
     sudo screen -dmS containerd containerd; sleep 5;
     ```
@@ -263,19 +282,30 @@ Execute the following below **as a non-root user with sudo rights** using **bash
     >
     > Regarding `screen` and starting daemons in background terminals, see the note
     > in step 2 of subsection II.2 _Setup Worker Nodes_.
-3. Start `firecracker-containerd` in a background named `firecracker`:
+
+4. Start `firecracker-containerd` in a background named `firecracker`:
     ```bash
     sudo PATH=$PATH screen -dmS firecracker /usr/local/bin/firecracker-containerd --config /etc/firecracker-containerd/config.toml; sleep 5;
     ```
-4. Build vHive host orchestrator:
+
+5. Build vHive host orchestrator:
     ```bash
     source /etc/profile && go build;
     ```
-5. Start `vHive` in a background terminal named `vhive`:
+
+6. Start `vHive` in a background terminal named `vhive`:
     ```bash
     sudo screen -dmS vhive ./vhive; sleep 5;
     ```
-6. Run the single node cluster setup script:
+
+    Step 3 to Step 6 is integrated into a script, you can execute it for convenience:
+
+    ```bash
+    ./scripts/setup_worker.sh
+    ```
+
+7. Run the single node cluster setup script:
+
     ```bash
     ./scripts/cluster/create_one_node_cluster.sh
     ```
