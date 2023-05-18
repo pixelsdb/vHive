@@ -8,6 +8,7 @@ spec:
       annotations:
         autoscaling.knative.dev/target: "1"
         autoscaling.knative.dev/target-utilization-percentage: "100"
+        autoscaling.knative.dev/target-burst-capacity: "-1"
     spec:
       containerConcurrency: 1
       containers:
