@@ -29,3 +29,15 @@ spec:
               value: 
             - name: MINIO_REGION
               value: 
+            - name: PROFILING_ENABLED
+              value: 
+            - name: PROFILING_EVENT
+              value: 
+            - name: FTP_HOST
+              value: 
+            - name: FTP_PORT
+              value: 
+            - name: FTP_USERNAME
+              value: 
+            - name: FTP_PASSWORD
+              value: 
