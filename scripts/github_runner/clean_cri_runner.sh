@@ -108,3 +108,6 @@ sudo systemctl stop stargz-snapshotter
 sudo systemctl disable stargz-snapshotter
 sudo rm /etc/systemd/system/stargz-snapshotter.service
 sudo systemctl daemon-reload
+
+# delete all the logs file
+sudo rm -rf /tmp/vhive-logs/*
