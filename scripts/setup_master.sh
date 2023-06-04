@@ -2,12 +2,17 @@
 set -x
 
 MODE=$1
+FUNCTION=$2
 if [ -z "$MODE" ]; then
     MODE="multinode"
 fi
 if [ "$MODE" != "multinode" ] && [ "$SANDBOX" != "onenode" ]; then
     echo Specified mode is not supported. Possible are \"multinode\" and \"onenode\"
     exit 1
+fi
+
+if [ -z "$FUNCTION" ]; then
+    FUNCTION="vhive"
 fi
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
@@ -22,4 +27,10 @@ if [ "$MODE" == "multinode" ]; then
 fi
 if [ "$MODE" == "onenode" ]; then
     $SCRIPTS/cluster/create_one_node_cluster.sh > >(tee -a /tmp/vhive-logs/create_one_node_cluster.stdout) 2> >(tee -a /tmp/vhive-logs/create_one_node_cluster.stderr >&2)
+fi
+
+if [ "$FUNCTION" == "vhive" ]; then
+    kn service apply worker-original -f "$ROOT"/configs/knative_workloads/worker_original.yaml
+    kn service apply worker-wall -f "$ROOT"/configs/knative_workloads/worker_wall.yaml
+    kn service apply worker-alloc -f "$ROOT"/configs/knative_workloads/worker_alloc.yaml
 fi
