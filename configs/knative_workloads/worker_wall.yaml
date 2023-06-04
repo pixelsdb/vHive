@@ -22,9 +22,9 @@ spec:
             - name: GUEST_IMAGE # Container image to use for firecracker-containerd container
               value: "docker.io/zhaoshihan/pixels-worker-vhive:latest"
             - name: PROFILING_ENABLED
-              value: 
+              value: "true"
             - name: PROFILING_EVENT
-              value: 
+              value: "wall"
             - name: FTP_HOST
               value: 
             - name: FTP_PORT

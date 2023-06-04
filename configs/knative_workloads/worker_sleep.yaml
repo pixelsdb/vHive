@@ -22,7 +22,7 @@ spec:
             - name: GUEST_IMAGE # Container image to use for firecracker-containerd container
               value: "docker.io/zhaoshihan/pixels-worker-vhive-late:sleep"
             - name: PROFILING_ENABLED
-              value: 
+              value: "false"
             - name: PROFILING_EVENT
               value: 
             - name: FTP_HOST
