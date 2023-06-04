@@ -21,14 +21,6 @@ spec:
               value: "50051"
             - name: GUEST_IMAGE # Container image to use for firecracker-containerd container
               value: "docker.io/zhaoshihan/pixels-worker-vhive:latest"
-            - name: MINIO_ENDPOINT
-              value: 
-            - name: MINIO_ACCESS_KEY
-              value: 
-            - name: MINIO_SECRET_KEY
-              value: 
-            - name: MINIO_REGION
-              value: 
             - name: PROFILING_ENABLED
               value: 
             - name: PROFILING_EVENT
