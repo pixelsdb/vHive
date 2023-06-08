@@ -256,8 +256,8 @@ func (o *Orchestrator) StopSingleVM(ctx context.Context, vmID string) error {
 	<-vm.TaskCh
 	//FIXME: Seems like some tasks need some extra time to die Issue#15, lr_training
 	time.Sleep(500 * time.Millisecond)
-
 	if _, err := task.Delete(ctx); err != nil {
+		logger.Errorf("ctx: %v, task: %v, vm: %v", ctx, task, vm)
 		logger.WithError(err).Error("failed to delete task")
 		return err
 	}

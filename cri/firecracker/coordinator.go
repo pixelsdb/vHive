@@ -119,6 +119,7 @@ func (c *coordinator) stopVM(ctx context.Context, containerID string) error {
 
 	c.Unlock()
 
+	log.Debugf("entry containerID: %v with funcInstance: %v", containerID, fi)
 	if !ok {
 		return nil
 	}
