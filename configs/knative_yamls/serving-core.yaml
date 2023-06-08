@@ -3768,6 +3768,8 @@ metadata:
   annotations:
     knative.dev/example-checksum: "a0feb4c6"
 data:
+  revision-timeout-seconds: "1200"
+  max-revision-timeout-seconds: "1200"
   _example: |
     ################################
     #                              #
@@ -3916,6 +3918,7 @@ data:
   # TODO: switch to 'queue-sidecar-image' after 0.27
   registries-skipping-tag-resolving: "kind.local,ko.local,dev.local,index.docker.io,gcr.io"
   queueSidecarImage: docker.io/vhiveease/queue-39be6f1d08a095bd076a71d288d295b6@sha256:7664e43ef34eccf3c311a0a7fa75da472303faf387e3f5f0a5fb863a9dbc3aff
+  digest-resolution-timeout: "60s"
   _example: |-
     ################################
     #                              #
@@ -5030,7 +5033,7 @@ spec:
       # should be at least as large as the upper bound on the Revision's
       # timeoutSeconds property to avoid servicing events disrupting
       # connections.
-      terminationGracePeriodSeconds: 600
+      terminationGracePeriodSeconds: 1200
 ---
 apiVersion: v1
 kind: Service
@@ -5516,7 +5519,7 @@ spec:
             initialDelaySeconds: 20
       # Our webhook should gracefully terminate by lame ducking first, set this to a sufficiently
       # high value that we respect whatever value it has configured for the lame duck grace period.
-      terminationGracePeriodSeconds: 300
+      terminationGracePeriodSeconds: 1200
 ---
 apiVersion: v1
 kind: Service
@@ -5715,7 +5718,7 @@ spec:
             initialDelaySeconds: 20
       # Our webhook should gracefully terminate by lame ducking first, set this to a sufficiently
       # high value that we respect whatever value it has configured for the lame duck grace period.
-      terminationGracePeriodSeconds: 300
+      terminationGracePeriodSeconds: 1200
 ---
 apiVersion: v1
 kind: Service
