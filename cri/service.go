@@ -77,7 +77,7 @@ func (s *Service) CreateContainer(ctx context.Context, r *criapi.CreateContainer
 }
 
 func (s *Service) RemoveContainer(ctx context.Context, r *criapi.RemoveContainerRequest) (*criapi.RemoveContainerResponse, error) {
-	log.Info("RemoveContainer, context: %v, request: %v", ctx, r)
+	log.Debug("RemoveContainer, context: %v, request: %v", ctx, r)
 	return s.serv.RemoveContainer(ctx, r)
 }
 
