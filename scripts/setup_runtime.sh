@@ -14,12 +14,12 @@ sudo sysctl --quiet -w net.ipv4.conf.all.promote_secondaries=1
 sudo sysctl --quiet --system
 
 # NAT setup
-hostiface=$(sudo route | grep default | tr -s ' ' | cut -d ' ' -f 8)
 sudo nft "add table ip filter"
 sudo nft "add chain ip filter FORWARD { type filter hook forward priority 0; policy accept; }"
 sudo nft "add rule ip filter FORWARD ct state related,established counter accept"
 sudo nft "add table ip nat"
 sudo nft "add chain ip nat POSTROUTING { type nat hook postrouting priority 0; policy accept; }"
+hostiface=$(sudo route | tail -n +3 | tr -s ' ' | cut -d ' ' -f 8 | sort | uniq)
 for eth in ${hostiface}
 do
 sudo nft "add rule ip nat POSTROUTING oifname ${eth} counter masquerade"
