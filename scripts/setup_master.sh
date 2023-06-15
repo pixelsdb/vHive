@@ -30,7 +30,5 @@ if [ "$MODE" == "onenode" ]; then
 fi
 
 if [ "$FUNCTION" == "vhive" ]; then
-    kn service apply worker-original -f "$ROOT"/configs/knative_workloads/worker_original.yaml
-    kn service apply worker-wall -f "$ROOT"/configs/knative_workloads/worker_wall.yaml
-    kn service apply worker-alloc -f "$ROOT"/configs/knative_workloads/worker_alloc.yaml
+    kn service apply worker-profile -f "$ROOT"/configs/knative_workloads/worker_profile.yaml
 fi
