@@ -72,7 +72,7 @@ SSD-equipped nodes are highly recommended. Full list of CloudLab nodes can be fo
 **On each node (both master and workers)**, execute the following instructions below **as a non-root user with sudo rights** using **bash**:
 1. Clone the vHive repository
     ```bash
-    git clone --depth=1 https://github.com/vhive-serverless/vhive.git
+    git clone --depth=1 https://github.com/pixelsdb/vHive.git
     ```
 2. Change your working directory to the root of the repository:
     ```bash
