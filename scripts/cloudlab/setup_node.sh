@@ -21,6 +21,7 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
+set -ex 
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 ROOT="$( cd $DIR && cd .. && cd .. && pwd)"
@@ -38,10 +39,10 @@ if [ "$SANDBOX" != "gvisor" ] && [ "$SANDBOX" != "firecracker" ] && [ "$SANDBOX"
     exit 1
 fi
 
-$SCRIPTS/utils/disable_auto_updates.sh
+# $SCRIPTS/utils/disable_auto_updates.sh
+$SCRIPTS/setup_system.sh
 
 source $SCRIPTS/install_go.sh
-$SCRIPTS/setup_system.sh
 
 sudo mkdir -p /etc/vhive-cri
 
